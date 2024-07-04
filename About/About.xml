@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ModMetaData>
+    <name>XenoRitual</name>
+    <author>"Kruasan1ch"</author>
+    <packageId>Kruasan1ch.XenoRitual</packageId>
+    <description>"Convert your new pawn to settlement's xenotype"</description>
+    <supportedVersions>
+        <li>1.5</li>
+    </supportedVersions>
+    <modDependencies>
+        <li>
+          <packageId>Ludeon.RimWorld.Biotech</packageId>
+          <displayName>Biotech</displayName>
+        </li>
+        <li>
+          <packageId>Ludeon.RimWorld.Anomaly</packageId>
+          <displayName>Anomaly</displayName>
+        </li>
+    </modDependencies>
+</ModMetaData>

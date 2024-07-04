@@ -1,0 +1,6 @@
+D:\Steam\steamapps\common\RimWorld\Mods\XenoRitual\Assemblies\XenoRitual.dll
+D:\Steam\steamapps\common\RimWorld\Mods\XenoRitual\Assemblies\XenoRitual.pdb
+D:\Steam\steamapps\common\RimWorld\Mods\XenoRitual\XenoRitual\obj\Release\XenoRitual.csproj.AssemblyReference.cache
+D:\Steam\steamapps\common\RimWorld\Mods\XenoRitual\XenoRitual\obj\Release\XenoRitual.csproj.CoreCompileInputs.cache
+D:\Steam\steamapps\common\RimWorld\Mods\XenoRitual\XenoRitual\obj\Release\XenoRitual.dll
+D:\Steam\steamapps\common\RimWorld\Mods\XenoRitual\XenoRitual\obj\Release\XenoRitual.pdb

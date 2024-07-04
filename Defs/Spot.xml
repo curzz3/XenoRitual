@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="BuildingBase">
+    <defName>CursedAltar</defName>
+    <label>cusing altar</label>
+    <description>A place to dedicate offerings to the ruinous powers.</description>
+    <thingClass>Building_WorkTable</thingClass>
+    <graphicData>
+      <texPath>Things/Building/CursedAltar</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(3, 3)</drawSize>
+    </graphicData>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <costList>
+      <Shard>1</Shard>
+      <Steel>150</Steel>
+    </costList>
+    <statBases>
+      <WorkToBuild>0</WorkToBuild>
+      <MeditationFocusStrength>0.08</MeditationFocusStrength>
+    </statBases>
+    <defaultStuff>BlocksMarble</defaultStuff>
+    <researchPrerequisites>
+      <li>Stonecutting</li>
+    </researchPrerequisites>
+    <scatterableOnMapGen>false</scatterableOnMapGen>
+    <useHitPoints>false</useHitPoints>
+    <size>(3,3)</size>
+    <designationCategory>Misc</designationCategory>
+    <rotatable>false</rotatable>
+    <passability>Standable</passability>
+    <hasInteractionCell>True</hasInteractionCell>
+    <interactionCellOffset>(0,0,0)</interactionCellOffset>
+    <surfaceType>Item</surfaceType>
+    <inspectorTabs>
+      <li>ITab_Bills</li>
+    </inspectorTabs>
+    <comps>
+      <li Class="CompProperties_Styleable"/>
+      <li Class="CompProperties_Usable">
+        <compClass>XenoRitual.Comps.CursedAltarComp</compClass>
+      </li>
+      <li Class="CompProperties_ReportWorkSpeed">
+      </li>
+      <li Class="CompProperties_MeditationFocus">
+        <statDef>MeditationFocusStrength</statDef>
+        <focusTypes>
+          <li>Morbid</li>
+        </focusTypes>
+      </li>
+    </comps>
+    <building>
+      <sowTag>SupportPlantsOnly</sowTag>
+      <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+      <ai_chillDestination>false</ai_chillDestination>
+      <buildingTags>
+        <li>RitualFocus</li>
+      </buildingTags>
+    </building>
+    <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+    <placeWorkers>
+      <li>PlaceWorker_ReportWorkSpeedPenalties</li>
+      <li>PlaceWorker_RitualFocus</li>
+    </placeWorkers>
+  </ThingDef>
+</Defs>
