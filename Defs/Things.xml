@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<ThingDef>
+		<defName>XenoRiteRes</defName>
+		<label>cursed meat</label>
+		<description>Pieces of twisted muscle and gristle, bloated with tumorous growths. Generous gift of god of decay and pestilence.</description>
+		<thingClass>ThingWithComps</thingClass>
+		<selectable>true</selectable>
+		<category>Item</category>
+		<drawerType>MapMeshOnly</drawerType>
+		<tickerType>Rare</tickerType>
+		<rotatable>false</rotatable>
+		<altitudeLayer>Item</altitudeLayer>
+		<resourceReadoutPriority>Middle</resourceReadoutPriority>
+		<drawGUIOverlay>true</drawGUIOverlay>
+		<healthAffectsPrice>false</healthAffectsPrice>
+		<stackLimit>75</stackLimit>
+		<alwaysHaulable>true</alwaysHaulable>
+		<socialPropernessMatters>true</socialPropernessMatters>
+		<tradeability>Sellable</tradeability>
+		<pathCost>14</pathCost>
+		<statBases>
+			<MaxHitPoints>60</MaxHitPoints>
+			<Beauty>-6</Beauty>
+			<DeteriorationRate>6</DeteriorationRate>
+			<Mass>0.03</Mass>
+			<Flammability>0.5</Flammability>
+			<Nutrition>0.05</Nutrition>
+			<FoodPoisonChanceFixedHuman>1</FoodPoisonChanceFixedHuman>
+			<MarketValue>0.5</MarketValue>
+		</statBases>
+		<graphicData>
+			<texPath>Things/Item/Resource/TwistedMeat</texPath>
+			<graphicClass>Graphic_StackCount</graphicClass>
+		</graphicData>
+		<thingCategories>
+			<li>MeatRaw</li>
+		</thingCategories>
+		<ingredient>
+			<mergeCompatibilityTags>
+				<li>TwistedMeat</li>
+			</mergeCompatibilityTags>
+		</ingredient>
+		<ingestible>
+			<foodType>Meat</foodType>
+			<preferability>RawBad</preferability>
+			<ingestEffect>EatMeat</ingestEffect>
+			<ingestSound>RawMeat_Eat</ingestSound>
+			<specialThoughtDirect>AteTwistedMeat</specialThoughtDirect>
+			<specialThoughtAsIngredient>AteTwistedMeat</specialThoughtAsIngredient>
+		</ingestible>
+		<comps>
+			<li Class="CompProperties_Forbiddable" />
+			<li Class="CompProperties_Rottable">
+				<daysToRotStart>2</daysToRotStart>
+				<rotDestroys>true</rotDestroys>
+			</li>
+			<li>
+				<compClass>CompHarbingerTreeConsumable</compClass>
+			</li>
+		</comps>
+	</ThingDef>
+</Defs>

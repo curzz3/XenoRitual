@@ -23,20 +23,20 @@ namespace XenoRitual.Comps
                 var convertTargets = pawn.Map.mapPawns.AllPawns.Where(p => IsValidConvertOption(p, pawn)).Except(pawn).ToList();
                 if (convertTargets.Count == 0)
                 {
-                    var caption = "No valid target";
+                    var caption = "No valid target. Everyone are the same Xenotype... I think.";
                     yield return new FloatMenuOption(caption, null, MenuOptionPriority.DisabledOption);
                 }
                 
                 List<Thing> MeatStacks = new List<Thing>();
-                int needed = StaticModVariables.MeatCountForConvertion;
+                int needed = StaticModVariables.ammount;
 
-                var MeatsOnSpot = parent.Map.thingGrid.ThingsListAt(parent.InteractionCell).FirstOrDefault(x => x.def == Defs.HumanMeat);
-                if (MeatsOnSpot != null && MeatsOnSpot.def == Defs.HumanMeat)
+                var MeatsOnSpot = parent.Map.thingGrid.ThingsListAt(parent.InteractionCell).FirstOrDefault(x => x.def == Defs.Resource);
+                if (MeatsOnSpot != null && MeatsOnSpot.def == Defs.Resource)
                 {
                     needed -= MeatsOnSpot.stackCount;
                 }
                 if (needed > 0)
-                    MeatStacks.AddRange(parent.Map.listerThings.ThingsOfDef(Defs.HumanMeat).Except(MeatsOnSpot));
+                    MeatStacks.AddRange(parent.Map.listerThings.ThingsOfDef(Defs.Resource).Except(MeatsOnSpot));
                 var thingCountList = new List<ThingCount>();
                 if (TryGetClosestMeat(pawn.Position, MeatStacks, thingCountList, needed))
                     foreach (var convertable in convertTargets)
@@ -45,7 +45,7 @@ namespace XenoRitual.Comps
                     }
                 else
                 {
-                    var caption = "We have no more meat to sacrifice";
+                    var caption = $"We have no more gifts to sacrifice. We need at least {needed}.";
                     yield return new FloatMenuOption(caption, null, MenuOptionPriority.DisabledOption);
                 }
             }

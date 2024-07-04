@@ -19,8 +19,19 @@ namespace XenoRitual.JobDrivers
         public readonly TargetIndex iConverting = TargetIndex.C; // Prisoner
 
         public int TicksLeft { get; set; } = (int)TicksMax;
-        public const float TicksMax = 300;
-
+        private static float TicksMax = Defs.ChangeXenotypeRiteRecipe.workAmount;
+        private int ammount
+        {
+            get
+            {
+                var fromRecipe = (int?) Defs.ChangeXenotypeRiteRecipe.ingredients.FirstOrDefault()?.GetBaseCount();
+                if(fromRecipe == null || fromRecipe <= 0)
+                {
+                    return 75;
+                }
+                return (int)fromRecipe;
+            }
+        }
         public Pawn Sacrificer
         {
             get
@@ -71,7 +82,7 @@ namespace XenoRitual.JobDrivers
             toil.AddFinishAction(() =>
             {
                 job.SetTarget(iConverting, convertingPawn);
-                job.SetTarget(MeatIndex, SacrificeSpot.Map.thingGrid.ThingsListAt(SacrificeSpot.InteractionCell).FirstOrDefault(x => x.def == Defs.HumanMeat));
+                job.SetTarget(MeatIndex, SacrificeSpot.Map.thingGrid.ThingsListAt(SacrificeSpot.InteractionCell).FirstOrDefault(x => x.def == Defs.Resource));
                 this.FailOnDestroyedNullOrForbidden(MeatIndex);
             });
             yield return toil;
@@ -117,9 +128,9 @@ namespace XenoRitual.JobDrivers
                     ReimplantXenogerm(Sacrificer, ConvertingPawn);
                     (ConvertingPawn.health.AddHediff(HediffDef.Named("CatatonicBreakdown")) as HediffWithComps).TryGetComp<HediffComp_Disappears>().ticksToDisappear = 100_000;
                     ConvertingPawn.jobs.StopAll();
-                    if (job.GetTarget(TargetIndex.B).Thing.stackCount <= StaticModVariables.MeatCountForConvertion)
+                    if (job.GetTarget(TargetIndex.B).Thing.stackCount <= ammount)
                         job.GetTarget(TargetIndex.B).Thing.Destroy(DestroyMode.Vanish);
-                    else job.GetTarget(TargetIndex.B).Thing.stackCount -= StaticModVariables.MeatCountForConvertion;
+                    else job.GetTarget(TargetIndex.B).Thing.stackCount -= ammount;
                 }
             };
             yield return afterSacrificePrisoner;

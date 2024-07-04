@@ -32,9 +32,6 @@
     <hasInteractionCell>True</hasInteractionCell>
     <interactionCellOffset>(0,0,0)</interactionCellOffset>
     <surfaceType>Item</surfaceType>
-    <inspectorTabs>
-      <li>ITab_Bills</li>
-    </inspectorTabs>
     <comps>
       <li Class="CompProperties_Styleable"/>
       <li Class="CompProperties_Usable">

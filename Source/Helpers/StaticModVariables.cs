@@ -8,6 +8,17 @@ namespace XenoRitual.Helpers
 {
     internal static class StaticModVariables
     {
-        public static int MeatCountForConvertion { get; internal set; } = 75;
+        public static int ammount
+        {
+            get
+            {
+                var fromRecipe = (int?)Defs.ChangeXenotypeRiteRecipe.ingredients.FirstOrDefault()?.GetBaseCount();
+                if (fromRecipe == null || fromRecipe <= 0)
+                {
+                    return 75;
+                }
+                return (int)fromRecipe;
+            }
+        }
     }
 }

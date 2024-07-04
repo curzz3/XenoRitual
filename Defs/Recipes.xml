@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<RecipeDef>
+		<defName>ChangeXenotypeRiteRecipe</defName>
+		<label>change xenotype</label>
+		<description>changing xenotype.</description>
+		<jobString>Changing xenotype.</jobString>
+		<workAmount>600</workAmount> <!--change this-->
+		<workSpeedStat>CookSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+		<allowMixingIngredients>false</allowMixingIngredients>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>XenoRiteRes</li> <!--do not change this-->
+					</thingDefs>
+				</filter>
+				<count>75</count> <!--change this-->
+			</li>
+		</ingredients>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>XenoRiteRes</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<workSkill>Cooking</workSkill>
+	</RecipeDef>
+	<RecipeDef>
+		<defName>Make_Cursed_Meat</defName>
+		<label>make cursed meat</label>
+		<description>Make cursed meat by combining raw meat and prayers.</description>
+		<jobString>Making cursed meat.</jobString>
+		<workAmount>450</workAmount>
+		<workSpeedStat>GeneralLaborSpeed</workSpeedStat>
+		<effectWorking>Cook</effectWorking>
+		<soundWorking>Recipe_CookMeal</soundWorking>
+		<allowMixingIngredients>false</allowMixingIngredients>
+		<ingredients>
+			<li>
+				<filter>
+					<thingDefs>
+						<li>Meat_Human</li>
+					</thingDefs>
+				</filter>
+				<count>50</count>
+			</li>
+		</ingredients>
+		<recipeUsers>
+			<li>ButcherSpot</li>
+		</recipeUsers>
+		<fixedIngredientFilter>
+			<thingDefs>
+				<li>Meat_Human</li>
+			</thingDefs>
+		</fixedIngredientFilter>
+		<products>
+			<XenoRiteRes>50</XenoRiteRes>
+		</products>
+		<workSkill>Cooking</workSkill>
+	</RecipeDef>
+</Defs>
