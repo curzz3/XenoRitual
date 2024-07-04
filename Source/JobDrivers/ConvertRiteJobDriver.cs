@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
+using Verse.Sound;
 using XenoRitual.Helpers;
 
 namespace XenoRitual.JobDrivers
@@ -113,7 +114,7 @@ namespace XenoRitual.JobDrivers
                 defaultCompleteMode = ToilCompleteMode.Instant,
                 initAction = () =>
                 {
-                    ConvertingPawn.genes.SetXenotype(Sacrificer.genes.Xenotype);
+                    ReimplantXenogerm(Sacrificer, ConvertingPawn);
                     (ConvertingPawn.health.AddHediff(HediffDef.Named("CatatonicBreakdown")) as HediffWithComps).TryGetComp<HediffComp_Disappears>().ticksToDisappear = 100_000;
                     ConvertingPawn.jobs.StopAll();
                     if (job.GetTarget(TargetIndex.B).Thing.stackCount <= StaticModVariables.MeatCountForConvertion)
@@ -124,6 +125,34 @@ namespace XenoRitual.JobDrivers
             yield return afterSacrificePrisoner;
 
 
+        }
+        public static void ReimplantXenogerm(Pawn caster, Pawn recipient)
+        {
+            if (!ModLister.CheckBiotech("xenogerm reimplantation"))
+            {
+                return;
+            }
+
+            QuestUtility.SendQuestTargetSignals(caster.questTags, "XenogermReimplanted", caster.Named("SUBJECT"));
+            recipient.genes.SetXenotype(caster.genes.Xenotype);
+            recipient.genes.xenotypeName = caster.genes.xenotypeName;
+            recipient.genes.xenotypeName = caster.genes.xenotypeName;
+            recipient.genes.iconDef = caster.genes.iconDef;
+            recipient.genes.ClearXenogenes();
+            recipient.genes.Endogenes.Clear();
+            foreach (Gene xenogene in caster.genes.GenesListForReading)
+            {
+                recipient.genes.AddGene(xenogene.def, xenogene: true);
+            }
+
+            if (!caster.genes.Xenotype.soundDefOnImplant.NullOrUndefined())
+            {
+                caster.genes.Xenotype.soundDefOnImplant.PlayOneShot(SoundInfo.InMap(recipient));
+            }
+
+            recipient.health.AddHediff(HediffDefOf.XenogerminationComa);
+            GeneUtility.ExtractXenogerm(caster);
+            GeneUtility.UpdateXenogermReplication(recipient);
         }
     }
 }

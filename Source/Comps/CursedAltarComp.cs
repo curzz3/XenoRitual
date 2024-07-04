@@ -76,7 +76,7 @@ namespace XenoRitual.Comps
         {
 
             return converting.IsHumanlike() && converting.IsColonist
-                && converting.genes.Xenotype != ritualist.genes.Xenotype;
+                && (converting.genes.XenotypeLabel != ritualist.genes.XenotypeLabel);
 
         }
         protected FloatMenuOption CreateConvertOption(Pawn sacrificer, Pawn converting, List<ThingCount> Meats,Thing MeatsOnSpot =null)
