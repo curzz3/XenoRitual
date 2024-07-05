@@ -8,17 +8,10 @@ namespace XenoRitual.Helpers
 {
     internal static class StaticModVariables
     {
-        public static int ammount
-        {
-            get
-            {
-                var fromRecipe = (int?)Defs.ChangeXenotypeRiteRecipe.ingredients.FirstOrDefault()?.GetBaseCount();
-                if (fromRecipe == null || fromRecipe <= 0)
-                {
-                    return 75;
-                }
-                return (int)fromRecipe;
-            }
-        }
+        public static int ResourceAmmount = 75;
+
+        public static float WorkAmmount = 300;
+
+        public static bool isSicknessEnabled = true;
     }
 }

@@ -16,7 +16,7 @@
       <Steel>150</Steel>
     </costList>
     <statBases>
-      <WorkToBuild>0</WorkToBuild>
+      <WorkToBuild>6000</WorkToBuild>
       <MeditationFocusStrength>0.08</MeditationFocusStrength>
     </statBases>
     <defaultStuff>BlocksMarble</defaultStuff>

@@ -36,6 +36,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>libs\Assembly-CSharp.dll</HintPath>
     </Reference>
+    <Reference Include="HugsLib">
+      <HintPath>libs\HugsLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -51,6 +54,7 @@
     <Compile Include="Comps\CursedAltarComp.cs" />
     <Compile Include="Helpers\Defs.cs" />
     <Compile Include="Helpers\PawnHelpers.cs" />
+    <Compile Include="Helpers\Settings.cs" />
     <Compile Include="Helpers\StaticModVariables.cs" />
     <Compile Include="JobDrivers\ConvertRiteJobDriver.cs" />
     <Compile Include="JobDrivers\WaitPrisonerJobDriver.cs" />

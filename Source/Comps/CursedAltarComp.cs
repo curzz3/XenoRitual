@@ -28,7 +28,7 @@ namespace XenoRitual.Comps
                 }
                 
                 List<Thing> MeatStacks = new List<Thing>();
-                int needed = StaticModVariables.ammount;
+                int needed = StaticModVariables.ResourceAmmount;
 
                 var MeatsOnSpot = parent.Map.thingGrid.ThingsListAt(parent.InteractionCell).FirstOrDefault(x => x.def == Defs.Resource);
                 if (MeatsOnSpot != null && MeatsOnSpot.def == Defs.Resource)

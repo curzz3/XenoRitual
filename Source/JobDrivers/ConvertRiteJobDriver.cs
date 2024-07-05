@@ -1,4 +1,6 @@
-﻿using RimWorld;
+﻿using HugsLib.Settings;
+using HugsLib;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,19 +21,7 @@ namespace XenoRitual.JobDrivers
         public readonly TargetIndex iConverting = TargetIndex.C; // Prisoner
 
         public int TicksLeft { get; set; } = (int)TicksMax;
-        private static float TicksMax = Defs.ChangeXenotypeRiteRecipe.workAmount;
-        private int ammount
-        {
-            get
-            {
-                var fromRecipe = (int?) Defs.ChangeXenotypeRiteRecipe.ingredients.FirstOrDefault()?.GetBaseCount();
-                if(fromRecipe == null || fromRecipe <= 0)
-                {
-                    return 75;
-                }
-                return (int)fromRecipe;
-            }
-        }
+        private static float TicksMax = StaticModVariables.WorkAmmount;
         public Pawn Sacrificer
         {
             get
@@ -128,9 +118,9 @@ namespace XenoRitual.JobDrivers
                     ReimplantXenogerm(Sacrificer, ConvertingPawn);
                     (ConvertingPawn.health.AddHediff(HediffDef.Named("CatatonicBreakdown")) as HediffWithComps).TryGetComp<HediffComp_Disappears>().ticksToDisappear = 100_000;
                     ConvertingPawn.jobs.StopAll();
-                    if (job.GetTarget(TargetIndex.B).Thing.stackCount <= ammount)
+                    if (job.GetTarget(TargetIndex.B).Thing.stackCount <= StaticModVariables.ResourceAmmount)
                         job.GetTarget(TargetIndex.B).Thing.Destroy(DestroyMode.Vanish);
-                    else job.GetTarget(TargetIndex.B).Thing.stackCount -= ammount;
+                    else job.GetTarget(TargetIndex.B).Thing.stackCount -= StaticModVariables.ResourceAmmount;
                 }
             };
             yield return afterSacrificePrisoner;
@@ -160,9 +150,11 @@ namespace XenoRitual.JobDrivers
             {
                 caster.genes.Xenotype.soundDefOnImplant.PlayOneShot(SoundInfo.InMap(recipient));
             }
-
             recipient.health.AddHediff(HediffDefOf.XenogerminationComa);
-            GeneUtility.ExtractXenogerm(caster);
+            if (StaticModVariables.isSicknessEnabled)
+            {
+                GeneUtility.ExtractXenogerm(caster);
+            }
             GeneUtility.UpdateXenogermReplication(recipient);
         }
     }
